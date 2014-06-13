@@ -1,4 +1,4 @@
-package pojo;
+package com.software3.pojo;
 
 public class BookComment
 {
@@ -6,7 +6,7 @@ public class BookComment
 	int bookid;//图书ID
 	String bookname;//书名
 	String comment;//评论
-	String commentauthor;//评论人
+	String commentauthor;//评论�?
 	public int getCommentid()
 	{
 		return commentid;
