@@ -6,7 +6,7 @@ public class User
 	String name;
 	String sex;
 	String classandgrade;//班级
-	String college;//
+	String college;//学院
 	int level;//等级
 	int credits;//信用
 	String personerinfo;
