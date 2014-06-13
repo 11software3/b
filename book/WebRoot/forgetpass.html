@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+<br>
+<form action="" method="post">
+	<div>
+		<p>
+			<label>学号：</label>
+			<input type="text" name="studentid" placeholder="请提供注册时的密码" required/>
+		</p>
+		<p>
+			<label>手机：</label>
+			<input type="text" name="phone" placeholder="请提供注册时的手机号" required/>
+		</p>
+		<p>
+			<button type="submit">提交</button>
+		</p>
+	</div>
+</form>
+<script type="text/javascript">
+	$("button").on("click",function(){
+		if($("#studentid").val()==""){
+			alert("请填写学号");
+		}else if($("#phone").val()==""){
+			alert("请填写手机号");
+		}else{
+			$.ajax({
+				type:"POST",
+    			url: "findpass",
+				data: $("form").serialize(),//序列化表单数据
+			
+			})
+			.done(function(data){
+				if(data == "yes"){
+					layer.closeAll();
+					alert("新密码已发送至您的手机，请在一小时内登录修改密码，过期无效");
+				}else{
+					alert("你填写的学号或手机号码有误，请再次确认");
+					$("#studentid").focus();
+				}
+			})
+			return false;
+		}
+	})
+</script>
+</body>
+</html>
