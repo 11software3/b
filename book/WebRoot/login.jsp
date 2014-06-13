@@ -3,12 +3,12 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	
-		<title>图书互助平台V2.0</title>		
+		<link href="resources/image/book.ico" rel="shortcut icon"/><!-- 标签栏的图标 -->
+		<title>校园图书互助平台V2.0</title>		
 		<link href="resources/css/login.css" type="text/css" media="screen" rel="stylesheet">
 		<style type="text/css">
 			img, div { behavior: url(iepngfix.htc) }
@@ -58,7 +58,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div id="wrapper">
 					<div id="content">
 						<div id="header">
-							<h1>图书互助平台V2.0</h1>
+							<h1>校园图书互助平台V2.0</h1>
 						</div>
 						<div id="darkbanner" class="banner320">
 							<h2>登录</h2>
