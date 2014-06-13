@@ -13,12 +13,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<style type="text/css">
 			img, div { behavior: url(iepngfix.htc) }
 		</style>
+		<script src="resources/js/jquery-1.11.1.js"></script>
 		<script type="text/javascript">
 			function login(){
-				alert("hehe");
-				return false;
+				var un = $("#user_name").val();
+				var up = $("#user_password").val();
+				un = un.trim();//去掉多余的空格
+				if(un == ""){
+					alert("用户名不能为空");
+					return false;
+				}else if(up == ""){
+					alert("密码不能为空");
+					return false;
+				}
+				//console.log(un);
+				$.ajax({
+					  type: "POST",
+					  url: "login",
+					  data: {
+					  	user_name : un,
+					  	user_password:up
+					  },
+					})//执行成功之后判断返回的状态
+					.done(function(data){
+						//登录成功
+						if(data == "success"){
+							window.location="index.jsp"
+						}else{
+							//登录失败
+							alert("用户名或密码错误");
+							$("#user_name").focus();
+						}
+					})//执行失败后
+					.fail(function(){
+						alert("数据库内部错误");
+					});
 			}
-		</script>#c5e6ea
+			
+		</script>
 		
 </head>
 <body id="login" youdao="bind" ryt13299="1">
@@ -37,19 +69,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<fieldset class="form">
                         	 <p>
 								<label for="user_name">学号:</label>
-								<input name="user_name" id="user_name" type="text" value="">
+								<input name="user_name" id="user_name" placeholder="请输入学号" type="text" value="">
 							</p>
 							<p>
 								<label for="user_password">密码:</label>
-								<input name="user_password" id="user_password" type="password">
+								<input name="user_password" placeholder="密码" id="user_password" type="password">
 							</p>
-							<button class="positive" name="Submit" onclick="login();return false;">
+							<button class="positive" name="" onclick="login();return false;">
 								<img src="resources/image/key.png" alt="Announcement">登录
 							</button>
+							<a href="#" id="forgetpsw">忘记密码？</a>
 							</fieldset>
 						</form>
 					</div>
 				</div>  
-			<div id="wrapperbottom_branding"><div id="wrapperbottom_branding_text">11级软件3班蔡斌组</div></div>
+			<div id="wrapperbottom_branding">
+				<div id="wrapperbottom_branding_text">
+					<a href="https://www.teambition.com/project/53992d4daa67781f4615cdd1/home" title="访问我们的项目主页" target="_blank">11级软件3班蔡斌组</a>
+				</div>
+			</div>
+			<script type="text/javascript">
+				var forget = document.getElementById("forgetpsw");
+				forget.onclick=function(){
+					alert("忘记密码");
+				}
+			</script>
 </body>
 </html>
