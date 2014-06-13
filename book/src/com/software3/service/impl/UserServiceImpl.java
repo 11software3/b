@@ -1,6 +1,7 @@
 package com.software3.service.impl;
 
 import java.sql.ResultSet;
+import java.util.Random;
 
 import com.software3.dao.DBDao;
 import com.software3.pojo.User;
@@ -63,5 +64,93 @@ public class UserServiceImpl implements UserService
 		}
 		return null;
 	}
+	
+	@Override
+	public boolean checkStudentid(String studentid){
+		sql = "select * from user where studentid=?";
+		try
+		{
+			userDao.getCon(sql);
+			userDao.getPstmt().setString(1, studentid);
+			if(userDao.query().next()){
+				return true; //数据库中已存在学号
+			}
+			return false;//数据库中不存在学号
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	@Override
+	public boolean addUser(User user,String password,int type){
+		String sql2 = "insert into login values(?,?,?)";
+		sql ="insert into user values(?,?,?,?,?,?,?,?,?,?,?)";
+		try
+		{
+			userDao.getCon(sql);
+			userDao.getPstmt().setString(1, user.getStudentid());
+			userDao.getPstmt().setString(2, user.getName());
+			userDao.getPstmt().setString(3, user.getSex());
+			userDao.getPstmt().setString(4, user.getClassandgrade());
+			userDao.getPstmt().setString(5, user.getCollege());
+			userDao.getPstmt().setString(6, user.getPhone());
+			userDao.getPstmt().setString(7, user.getWechat());
+			userDao.getPstmt().setString(8, user.getWeibo());
+			userDao.getPstmt().setInt(9, user.getLevel());
+			userDao.getPstmt().setInt(10, user.getCredits());
+			userDao.getPstmt().setString(11, user.getPersonerinfo());
+			boolean result1 =  userDao.commit();
+			userDao.getCon(sql2);
+			userDao.getPstmt().setString(1, user.getStudentid());
+			userDao.getPstmt().setString(2, password);
+			userDao.getPstmt().setInt(3, type);
+			boolean result2 = userDao.commit();
+			return result1 && result2;
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	@Override
+	public boolean findPass(String studentid ,String phone){
+		
+		sql = "select name from user where studentid=? and phone=?";
+		String sql2 = "update login set password=? where studentid=?";
+		boolean result1 = false,result2 = false;
+		try
+		{
+			userDao.getCon(sql);
+			userDao.getPstmt().setString(1, studentid);
+			userDao.getPstmt().setString(2, phone);
+		
+			result1 = userDao.query().next();//先看是否存在此学号和手机号
+			if(result1){
+				userDao.getCon(sql2); 
+				String newpass = UserServiceImpl.getRandomString(10);
+				userDao.getPstmt().setString(1, newpass);
+				userDao.getPstmt().setString(2, studentid);//重新设置密码
+				result2 = userDao.commit();
+			}
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return result1 && result2;
+		
+	}
+	
+	public static String getRandomString(int length) { //length表示生成字符串的长度  
+	    String base = "abcdefghijklmnopqrstuvwxyz0123456789";     
+	    Random random = new Random();     
+	    StringBuffer sb = new StringBuffer();     
+	    for (int i = 0; i < length; i++) {     
+	        int number = random.nextInt(base.length());     
+	        sb.append(base.charAt(number));     
+	    }     
+	    return sb.toString();     
+	 }     
 
 }
