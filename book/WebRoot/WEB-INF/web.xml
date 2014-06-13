@@ -3,4 +3,9 @@
    <welcome-file-list>
     <welcome-file>login.jsp</welcome-file>
   </welcome-file-list>
+ 
+	<servlet>
+		<servlet-name>login</servlet-name>
+		<servlet-class>Servlet.LoginServlet</servlet-class>
+	</servlet>
 </web-app>
