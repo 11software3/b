@@ -6,7 +6,7 @@ public class BookComment
 	int bookid;//图书ID
 	String bookname;//书名
 	String comment;//评论
-	String commentauthor;//评论�?
+	String commentauthor;//评论者
 	public int getCommentid()
 	{
 		return commentid;

@@ -6,9 +6,9 @@ public class Book
 	String bookname;
 	String type;//分类
 	String aboutbook;
-	int currentstate;//当前状�?
+	int currentstate;//当前状态
 	String author;
-	String provider;//提供�?
+	String provider;//提供者
 	int borrowtimes;//借阅次数
 	int recommend;//推荐次数
 	

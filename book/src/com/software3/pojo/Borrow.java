@@ -11,7 +11,7 @@ public class Borrow
 	int bookid;
 	Date starttime;
 	Date endtime;
-	String remark;//备注
+	String remark;//备注 
 	
 	public int getBorrowid()
 	{

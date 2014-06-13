@@ -4,7 +4,7 @@ public class Login
 {
 	String studentid;
 	String password;
-	int type;//身份
+	int type;//身份 
 	
 	public String getStudentid()
 	{

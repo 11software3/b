@@ -4,11 +4,11 @@ public class User
 {
 	String studentid;
 	String name;
-	int sex;
+	String sex;
 	String classandgrade;//班级
-	String college;//学院
+	String college;//
 	int level;//等级
-	int credits;//信誉
+	int credits;//信用
 	String personerinfo;
 	String phone;
 	String wechat;
@@ -30,11 +30,11 @@ public class User
 	{
 		this.name = name;
 	}
-	public int getSex()
+	public String getSex()
 	{
 		return sex;
 	}
-	public void setSex(int sex)
+	public void setSex(String sex)
 	{
 		this.sex = sex;
 	}
