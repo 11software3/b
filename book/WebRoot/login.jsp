@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link href="resources/image/book.ico" rel="shortcut icon"/><!-- 标签栏的图标 -->
+		<link href="resources/image/tushu.ico" rel="shortcut icon"/><!-- 标签栏的图标 -->
 		<title>校园图书互助平台V2.0</title>		
 		<link href="resources/css/login.css" type="text/css" media="screen" rel="stylesheet">
 		<style type="text/css">
