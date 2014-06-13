@@ -2,6 +2,7 @@ package com.software3.servlet;
 
 import java.io.IOException;
 
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,6 +11,12 @@ import com.software3.pojo.User;
 import com.software3.service.UserService;
 import com.software3.service.impl.UserServiceImpl;
 
+@WebServlet("/login")
+/**
+ * 
+ * @author CaiBin
+ * 登录
+ */
 public class LoginServlet extends HttpServlet
 {
 
