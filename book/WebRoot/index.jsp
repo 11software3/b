@@ -27,5 +27,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</script>
   </c:if>
   hahahah
+  <a href="logout">×¢Ïú</a>
   </body>
 </html>
