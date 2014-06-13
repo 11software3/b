@@ -3,6 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,6 +55,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 </head>
 <body id="login" youdao="bind" ryt13299="1">
+<c:if test="${not empty studentid}">
+	<script>
+		window.location="index.jsp";
+	</script>
+</c:if>
 		<div id="wrappertop"></div>
 			<div id="wrapper">
 					<div id="content">
