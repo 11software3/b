@@ -11,10 +11,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link href="resources/image/tushu.ico" rel="shortcut icon"/><!-- 标签栏的图标 -->
 		<title>校园图书互助平台V2.0</title>		
 		<link href="resources/css/login.css" type="text/css" media="screen" rel="stylesheet">
+		<script src="resources/js/jquery-1.11.1.js"></script>
+		<script src="resources/layer/layer.min.js"></script>
 		<style type="text/css">
 			img, div { behavior: url(iepngfix.htc) }
 		</style>
-		<script src="resources/js/jquery-1.11.1.js"></script>
+		
 		<script type="text/javascript">
 			function login(){
 				var un = $("#user_name").val();
@@ -31,10 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$.ajax({
 					  type: "POST",
 					  url: "login",
-					  data: {
-					  	user_name : un,
-					  	user_password:up
-					  },
+					  data: $("form").serialize(),//序列化表单数据
 					})//执行成功之后判断返回的状态
 					.done(function(data){
 						//登录成功
@@ -75,16 +74,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<fieldset class="form">
                         	 <p>
 								<label for="user_name">学号:</label>
-								<input name="user_name" id="user_name" placeholder="请输入学号" type="text" value="">
+								<input name="user_name" id="user_name" placeholder="请输入学号" required type="text" value="">
 							</p>
 							<p>
 								<label for="user_password">密码:</label>
-								<input name="user_password" placeholder="密码" id="user_password" type="password">
+								<input name="user_password" placeholder="密码" id="user_password" required type="password">
 							</p>
 							<button class="positive" name="" onclick="login();return false;">
 								<img src="resources/image/key.png" alt="Announcement">登录
 							</button>
-							<a href="#" id="forgetpsw">忘记密码？</a>
+							<a href="#" id="forgetpsw" title="点此找回密码">忘记密码？</a>
+							<a href="javascript:;" id="signin" title="注册成为新用户">注册</a>
 							</fieldset>
 						</form>
 					</div>
@@ -95,10 +95,51 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</div>
 			<script type="text/javascript">
-				var forget = document.getElementById("forgetpsw");
-				forget.onclick=function(){
-					alert("忘记密码");
-				}
+				
+				
+				var page = {};
+				//方法固定要写成这样
+				layer.login = function(options){
+					options = options || {};
+				    $.layer({
+				        type: 1,
+				        title: '用户注册',
+				        offset: [($(window).height() - 450)/2+'px', ''],
+				        border : [5, 0.5, '#666'],
+				        area: ['650px','350px'],
+				        shadeClose: true,
+				        page: page
+				    });
+				};
+				
+				$("#signin").on("click",function(){
+
+				    page.url = 'signin.jsp'
+				     
+					layer.login();
+				}); 
+				
+	
+				var page2={};
+				page2.url = 'forgetpass.html';
+				var layerLoop = function(){
+				    var index = $.layer({
+				        type:1,
+				        fix: false,
+				        area: ['350px','200px'],
+				        moveOut: true,
+				        zIndex: layer.zIndex,
+				        shade: [0],
+				        title: '忘记密码',
+				        offset: [($(window).height() - 450)/2+'px', ''],
+				        //以下对html做转义是为了防止被代码演示解析，实际应用时无需转义
+				        page: page2, 
+				        
+				    });
+				};
+				$('#forgetpsw').on('click', layerLoop);
+				
+				
 			</script>
 </body>
 </html>
