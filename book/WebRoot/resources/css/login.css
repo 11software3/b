@@ -17,18 +17,29 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	font-family: inherit;
 	vertical-align: baseline;
 }
-#forgetpsw{
-	width: 100px;
+#forgetpsw,#signin{
+	width: 80px;
 	font-size: 15px;
 	font-style: inherit;
 	display: inline-block;
-	margin: 5px 30px;
+	margin: 5px 15px;
+	text-decoration: none;
+	color: green;
+}
+#signin{
+	width: 40px;
+	font-size: 15px;
+	font-style: inherit;
+	display: inline-block;
+	margin: 5px 10px;
 	text-decoration: none;
 	color: green;
 }
 #forgetpsw:hover{
 	text-decoration: underline;
-	/* font-size:17px; */
+}
+#signin:hover{
+	text-decoration: underline;
 }
 /* remember to define focus styles! */
 :focus {
