@@ -1,4 +1,4 @@
-package pojo;
+package com.software3.pojo;
 
 public class User
 {
