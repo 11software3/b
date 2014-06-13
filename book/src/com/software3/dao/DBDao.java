@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class DBDao {
 	String driver = "com.mysql.jdbc.Driver";
-	String url = "jdbc:mysql://localhost/book";
+	String url = "jdbc:mysql://localhost/book?useUnicode=true&&characterEncoding=UTF-8";
 	String user = "root";
 	String password = "root";
 	ResultSet rs;
