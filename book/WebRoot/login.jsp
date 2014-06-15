@@ -53,7 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</script>
 		
 </head>
-<body id="login" youdao="bind" ryt13299="1">
+<body id="login">
 <c:if test="${not empty studentid}">
 	<script>
 		window.location="index.jsp";
