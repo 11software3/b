@@ -1,16 +1,19 @@
 package com.software3.pojo;
 
+import java.sql.Date;
+
 public class Book
 {
 	int bookid;
 	String bookname;
 	String type;//分类
-	String aboutbook;
+	String aboutbook;//简介
 	int currentstate;//当前状态
 	String author;
 	String provider;//提供者
 	int borrowtimes;//借阅次数
 	int recommend;//推荐次数
+	Date sharetime;//发布时间
 	
 	public int getBookid()
 	{
@@ -84,5 +87,15 @@ public class Book
 	{
 		this.recommend = recommend;
 	}
+	public Date getSharetime()
+	{
+		return sharetime;
+	}
+	public void setSharetime(Date sharetime)
+	{
+		this.sharetime = sharetime;
+	}
+	
+	
 
 }
