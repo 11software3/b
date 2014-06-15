@@ -1,5 +1,7 @@
 package com.software3.pojo;
 
+import java.util.Date;
+
 public class BookComment
 {
 	int commentid;//评论ID
@@ -7,6 +9,7 @@ public class BookComment
 	String bookname;//书名
 	String comment;//评论
 	String commentauthor;//评论者
+	Date commentdate;
 	public int getCommentid()
 	{
 		return commentid;
@@ -47,4 +50,13 @@ public class BookComment
 	{
 		this.commentauthor = commentauthor;
 	}
+	public Date getCommentdate()
+	{
+		return commentdate;
+	}
+	public void setCommentdate(Date commentdate)
+	{
+		this.commentdate = commentdate;
+	}
+	
 }
