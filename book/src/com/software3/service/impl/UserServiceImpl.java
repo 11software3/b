@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService
 				user.setClassandgrade(rs.getString("classandgrade"));
 				user.setCollege(rs.getString("college"));
 				user.setCredits(rs.getInt("credits"));
-				user.setLevel(rs.getInt("credits"));
+				user.setLevel(rs.getInt("level"));
 				user.setPersonerinfo(rs.getString("personerinfo"));
 				user.setPhone(rs.getString("phone"));
 				user.setWechat(rs.getString("wechat"));
@@ -140,6 +140,45 @@ public class UserServiceImpl implements UserService
 		}
 		return result1 && result2;
 		
+	}
+	
+	/**
+	 * 修改密码
+	 */
+	@Override
+	public boolean updatePass(String studentid,String pass1){
+		String sql = "update login set password=? where studentid=?";
+		try
+		{
+			userDao.getCon(sql);
+			userDao.getPstmt().setString(1, pass1);
+			userDao.getPstmt().setString(2, studentid);
+			return userDao.commit();
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	/**
+	 * 检查旧密码是否正确
+	 */
+	@Override 
+	public boolean oldPassisRight(String studentid,String pass0){
+		String sql = "select studentid from login where studentid=? and password=?";
+		try
+		{
+			userDao.getCon(sql);
+			userDao.getPstmt().setString(1, studentid);
+			userDao.getPstmt().setString(2, pass0);
+			return userDao.query().next();
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return false;
 	}
 	
 	public static String getRandomString(int length) { //length表示生成字符串的长度  
