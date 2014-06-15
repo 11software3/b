@@ -75,12 +75,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <li class="demo_li"><a href="#" id="user" title="点击这个你就可以看到你自身狂拽霸酷叼的个人信息了"><div><i class="fa fa-user"></i></div><div>个人信息</div></a></li>
                 <li class="demo_li"><a href="#" id="updatepass" title="经常修改密码是个好事儿，安全！一般人我不告诉他"><div><i class="fa fa-key"></i></div><div>修改密码</div></a></li>
                 <li class="demo_li"><a href="#" id="logout" title="退出应用"><div><i class="fa fa-sign-out"></i></div><div>注销</div></a></li>
-                <li class="demo_li"><a href="#" id="sharebook" title="发布你的图书"><div><i class="fa fa-book"></i></div><div>发布图书</div></a></li>
-                <li class="demo_li"><a href="#" id="searchbook" title="想借书吗？那就搜一些吧"><div><i class="fa fa-search"></i></div><div>搜索图书</div></a></li>
-                <li class="demo_li"><a href="#" id="givebackbook" title="送君千里终有一别，别废话了，快把书还了"><div><i class="fa fa-mail-forward"></i></div><div>归还图书</div></a></li>
-                <li class="demo_li"><a href="#" id="like" title="据说点了这个赞都是好孩子"><div><i class="fa fa-heart"></i></div><div>给我们点个赞</div></a></li>
-                <li class="demo_li"><a href="#" id="advise" title="你有什么好的建(fu)议(li)吗？"><div><i class="fa fa-comment"></i></div><div>反馈建议</div></a></li>
-                <li class="demo_li"><a href="#" id="group" title="向我们辛苦的作者致敬！"><div><i class="fa fa-group"></i></div>小组成员<div></div></a></li>
+                <li class="demo_li"><a href="#" id="sharebook" title="发布你的图书"><div><i class="fa fa-book"></i></div><div>我要分享</div></a></li>
+                <li class="demo_li"><a href="#" id="searchbook" title="想借书吗？那就搜一些吧"><div><i class="fa fa-search"></i></div><div>搜一下！</div></a></li>
+                <li class="demo_li"><a href="#" id="givebackbook" title="送君千里终有一别，别废话了，快把书还了"><div><i class="fa fa-mail-forward"></i></div><div>要归还了</div></a></li>
+                <li class="demo_li"><a href="#" id="mybook" title="这里有你的图书哟"><div><i class="fa fa-bookmark"></i></div><div>我的图书</div></a></li>
+                <li class="demo_li"><a href="#" id="advise" title="你有什么好的建(fu)议(li)吗？"><div><i class="fa fa-comment"></i></div><div>我要投诉</div></a></li>
+                <li class="demo_li"><a href="#" id="group" title="向我们辛苦的作者致敬！"><div><i class="fa fa-group"></i></div>传说中的成员<div></div></a></li>
             </ul>
         </div>
     </div>
@@ -229,14 +229,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }
         $("#givebackbook").on("click",givebackbook);
         
-        var like = function(){
-        	layer.msg('感谢你的支持！',1,{
-        		type:9,
-        		shade:false,
-        		rate:300
-        	});
-        };
-        $("#like").on("click",like);
+       
     </script>
 	
 </body>
