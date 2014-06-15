@@ -130,7 +130,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			<p>
   				<label>性别:</label>
   				<select name="sex" required>
-  					<option value="${user.sex }">${user.sex }</option>
+  					<option value="${user.sex }" seleted>${user.sex }</option>
   					<c:if test="${user.sex eq '男'}">
   						<option value="女">女</option>
   					</c:if>
@@ -163,7 +163,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			</p>
   			<p>
   				<label class="personerinfo">个人说明:</label>
-  				<textarea rows="3" cols="20" required> ${user.personerinfo }</textarea>
+  				<textarea rows="3" cols="20" required name="personerinfo"> ${user.personerinfo }</textarea>
   			</p>
   			<p>
   				<button id="updateuserinfo" onclick="return false;">提交</button>
@@ -180,22 +180,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   				url:"updateuser",
   				data:$("form").serialize()
   			})
-  			.done(function(data){
-  				if(data == "success"){
-  					alert("success");
+  			.done(function(statu){
+  				if(statu == "success"){
+  					alert("修改成功");
   					var index = parent.layer.getFrameIndex(window.name);
-            		parent.layer.close(index);
-            		return true;
-  				}else if(data == "error"){
-  					alert("fail");
-  					return false;
+  	            	parent.layer.close(index);
+  				}else{
+  					alert("修改失败");
+  					
   				}
   			})
   			.error(function(data){
   				alert("数据库内部错误");
-  				return false;
+  				
   			});
-  			return false;
+  			
   		});
   		$(".no").on("click",function(){
 				var index = parent.layer.getFrameIndex(window.name);
