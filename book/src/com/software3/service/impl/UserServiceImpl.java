@@ -115,6 +115,33 @@ public class UserServiceImpl implements UserService
 	}
 	
 	@Override
+	public boolean updateUser(User user){
+		String sql = "update user set name=?,sex=?,classandgrade=?,college=?," +
+				"phone=?,wechat=?,weibo=?,level=?,credits=?,personerinfo=? where studentid=?";
+		try
+		{
+			userDao.getCon(sql);
+			userDao.getPstmt().setString(1, user.getName());
+			userDao.getPstmt().setString(2, user.getSex());
+			userDao.getPstmt().setString(3, user.getClassandgrade());
+			userDao.getPstmt().setString(4, user.getCollege());
+			userDao.getPstmt().setString(5, user.getPhone());
+			userDao.getPstmt().setString(6, user.getWechat());
+			userDao.getPstmt().setString(7, user.getWeibo());
+			userDao.getPstmt().setInt(8, user.getLevel());
+			userDao.getPstmt().setInt(9, user.getCredits());
+			userDao.getPstmt().setString(10, user.getPersonerinfo());
+			userDao.getPstmt().setString(11, user.getStudentid());
+			return userDao.commit();
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+	
+	@Override
 	public boolean findPass(String studentid ,String phone){
 		
 		sql = "select name from user where studentid=? and phone=?";
