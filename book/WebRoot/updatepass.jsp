@@ -63,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <form action="updatapass" method="post">
     	<div>
     		<p>
-    			<label>原来的密码：</label>
+    			<label>旧的密码：</label>
     			<input type="password" id="pass0" name="pass0" required>
     		</p>
     		<p>
