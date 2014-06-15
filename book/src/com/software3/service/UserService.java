@@ -8,6 +8,7 @@ public interface UserService
 	public User getUser(String username);
 	public boolean checkStudentid(String studentid);
 	public boolean addUser(User user,String password,int type);
+	public boolean updateUser(User user);
 	public boolean findPass(String studentid, String phone);
 	public boolean updatePass(String studentid,String pass1);
 	public boolean oldPassisRight(String studentid,String pass0);
