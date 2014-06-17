@@ -35,6 +35,27 @@ public class UserServiceImpl implements UserService
 	}
 	
 	@Override
+	public User getUserContact(String name){
+		sql = "select * from user where name=?";
+		try
+		{
+			user = new User();
+			userDao.getCon(sql);
+			userDao.getPstmt().setString(1, name);
+			ResultSet rs = userDao.query();
+			if(rs.next()){
+				user.setPhone(rs.getString("phone"));
+				user.setWechat(rs.getString("wechat"));
+				user.setWeibo(rs.getString("weibo"));
+			}
+			return user;
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return user;
+	}
+	@Override
 	public User getUser(String studentid){
 		sql = "select * from user where studentid=?";
 		try
@@ -208,6 +229,27 @@ public class UserServiceImpl implements UserService
 		return false;
 	}
 	
+	@Override
+	public boolean checkCredits(String studentid){
+		sql = "select credits from user where studentid=?";
+		try
+		{
+			userDao.getCon(sql);
+			userDao.getPstmt().setString(1, studentid);
+			ResultSet rs = userDao.query();
+			if(rs.next()){
+				if(rs.getInt("credits") >= 100){
+					return true;
+				}
+			}else{
+				return false;
+			}
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return false;
+	}
 	public static String getRandomString(int length) { //length表示生成字符串的长度  
 	    String base = "abcdefghijklmnopqrstuvwxyz0123456789";     
 	    Random random = new Random();     
@@ -219,4 +261,5 @@ public class UserServiceImpl implements UserService
 	    return sb.toString();     
 	 }     
 
+	
 }
