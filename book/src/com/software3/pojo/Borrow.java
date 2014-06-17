@@ -6,7 +6,7 @@ public class Borrow
 {
 	int borrowid;
 	String borrowstudentid;
-	String providerid;
+	String provider;
 	String bookname;
 	int bookid;
 	Date starttime;
@@ -29,13 +29,13 @@ public class Borrow
 	{
 		this.borrowstudentid = borrowstudentid;
 	}
-	public String getProviderid()
+	public String getProvider()
 	{
-		return providerid;
+		return provider;
 	}
-	public void setProviderid(String providerid)
+	public void setProvider(String provider)
 	{
-		this.providerid = providerid;
+		this.provider = provider;
 	}
 	public String getBookname()
 	{
