@@ -70,7 +70,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		</p>
     		<p>
     			<button id="advise" onclick="return false;">提交</button>
-    			<button id="heart" onclick="return false;"><i class="fa fa-thumbs-up">赞一下</i></button>
     		</p>
     	</div>
     	</form>
@@ -96,13 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     				layer.alert("数据库跪了。。ORZ");
     			})
     		});
-    		$("#heart").on("click",function(){
-        		layer.msg('<style>#memeda{color:red;}</style>感谢你的支持，么么哒！<i id="memeda"class="fa fa-heart"></i>',2,{
-            		type:9,
-            		shade:false,
-            		rate:300
-            	});
-    		});
+    		
     	</script>
   </body>
 </html>

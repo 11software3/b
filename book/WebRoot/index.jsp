@@ -75,10 +75,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <li class="demo_li"><a href="#" id="user" title="点击这个你就可以看到你自身狂拽霸酷叼的个人信息了"><div><i class="fa fa-user"></i></div><div>个人信息</div></a></li>
                 <li class="demo_li"><a href="#" id="updatepass" title="经常修改密码是个好事儿，安全！一般人我不告诉他"><div><i class="fa fa-key"></i></div><div>修改密码</div></a></li>
                 <li class="demo_li"><a href="#" id="logout" title="退出应用"><div><i class="fa fa-sign-out"></i></div><div>注销</div></a></li>
-                <li class="demo_li"><a href="#" id="sharebook" title="发布你的图书"><div><i class="fa fa-book"></i></div><div>我要分享</div></a></li>
+                <li class="demo_li"><a href="#" id="sharebook" title="发布你的图书"><div><i class="fa fa-share"></i></div><div>我要发布</div></a></li>
                 <li class="demo_li"><a href="#" id="searchbook" title="想借书吗？那就搜一些吧"><div><i class="fa fa-search"></i></div><div>搜一下！</div></a></li>
-                <li class="demo_li"><a href="#" id="givebackbook" title="送君千里终有一别，别废话了，快把书还了"><div><i class="fa fa-mail-forward"></i></div><div>要归还了</div></a></li>
-                <li class="demo_li"><a href="#" id="mybook" title="这里有你的图书哟"><div><i class="fa fa-bookmark"></i></div><div>我的图书</div></a></li>
+               	<li class="demo_li"><a href="#" id="mybook" title="这里有你的图书哟"><div><i class="fa fa-book"></i></div><div>我的图书</div></a></li>
+                <li class="demo_li"><a href="#" id="like" title="期待你的赞许哟"><div><i class="fa fa-thumbs-o-up"></i></div><div>赞一下</div></a></li>
                 <li class="demo_li"><a href="#" id="advise" title="你有什么好的建(fu)议(li)吗？"><div><i class="fa fa-comment"></i></div><div>我有话说</div></a></li>
                 <li class="demo_li"><a href="#" id="group" title="向我们辛苦的作者致敬！"><div><i class="fa fa-group"></i></div>传说中的成员<div></div></a></li>
             </ul>
@@ -132,8 +132,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	    border : [0],
         	    page : {dom : '.layer_notice'}
         	});
-
-        	 
         };
         $("#group").on("click",team);
      
@@ -177,13 +175,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	    title: '<style>.tt{padding-left:90px; font-weight:bold;text-align:center; color:#34495e; font-family:"微软雅黑";font-size:1.3em}</style><div class="tt">反馈建议</div>',
         	    border: [0],
         	    shade: [0.1,'#fff'],
-        	    offset: ['105px','330px'],
+        	    offset: ['105px','350px'],
         	    area: ['400px','400px'],
         	    iframe: {src: 'advise.jsp'}
         	});
         }
         $("#advise").on("click",advise);
         
+        /*发布图书*/
         var sharebook = function(){
         	var index = $.layer({
         		type: 2,
@@ -192,8 +191,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	    title: '<style>.tt{padding-left:90px; font-weight:bold;text-align:center; color:#34495e; font-family:"微软雅黑";font-size:1.3em}</style><div class="tt">发布图书</div>',
         	    border: [0],
         	    shade: [0.1,'#34495e'],
-        	    offset: ['0px','350px'],
-        	    area: ['1005px','630px'],
+        	    offset: ['0px','330px'],
+        	    area:['1035px','640px'],
         	    iframe: {src: 'common?r=sharebook'}
         	});
         };
@@ -207,29 +206,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         		title:'<style>.tt{padding-left:90px; font-weight:bold;text-align:center; color:#34495e; font-family:"微软雅黑";font-size:1.3em}</style><div class="tt">搜索图书</div>',
         		border: [0],
         		shade:[0.1,'#34495e'],
-        		offset:['0px','350px'],
-        		area:['1005px','630px'],
+        		offset:['0px','330px'],
+        		area:['1035px','640px'],
         		iframe:{src:'common?r=searchbook'}
         	});
         }
         $("#searchbook").on("click",searchbook);
+
+        /*赞一下*/
+        $("#like").on("click",function(){
+    		layer.msg('<style>#memeda{color:red;font-size:1.0em;}</style>感谢你的支持，么么哒！<i id="memeda"class="fa fa-heart"></i>',2,{
+        		type:9,
+        		shade:false,
+        		rate:300
+        	});
+		});
         
-        var givebackbook = function(){
+        var mybook = function(){
         	var index = $.layer({
         		type:2,
         		maxmin:true,
         		shadeClose:true,
-        		title:'<style>.tt{padding-left:90px; font-weight:bold;text-align:center; color:#34495e; font-family:"微软雅黑";font-size:1.3em}</style><div class="tt">归还图书</div>',
-        		border: [0],
+        		title:'<style>.tt{padding-left:460px; font-weight:bold;color:#34495e; font-family:"微软雅黑";font-size:1.3em}</style><div class="tt">我的图书</div>',
+        		border:[0],
         		shade:[0.1,'#34495e'],
-        		offset:['0px','350px'],
-        		area:['1005px','630px'],
-        		iframe:{src:'common?r=givebackbook'}
+        		offset:['0px','330px'],
+        		area:['1035px','640px'],
+        		iframe:{src:'common?r=mybook'}
         	});
         }
-        $("#givebackbook").on("click",givebackbook);
-        
-       
+       	$("#mybook").on("click",mybook);
     </script>
 	
 </body>
