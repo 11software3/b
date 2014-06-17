@@ -43,7 +43,7 @@ public class ShareBookServlet extends HttpServlet
 			e.printStackTrace();
 		}
 		b.setType(request.getParameter("type"));
-		if(bs.saveBook(b)){
+		if(bs.saveBook(b,request.getSession().getAttribute("studentid").toString())){
 			response.getWriter().write("success");
 		}else{
 			response.getWriter().write("fail");

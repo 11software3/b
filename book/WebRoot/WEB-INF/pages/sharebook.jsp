@@ -10,14 +10,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <base href="<%=basePath%>">
 	<style type="text/css">
 		body{
-			background-color: #34495e;
+			background-color:#fff;
 		}
 		div{
 			font-family:"微软雅黑";
 			font-size:1.3em;
 		}
 		p{
-			color:white;
+			color:#000;
 			height:50px;
 		}
 		label{
@@ -54,13 +54,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			font-size:25px;
 		}
 		.readonly{
-			margin-top: 100px;
+			margin-top: 95px;
 			border: 0px;
 		}
 		.readonly > input{
+			margin-top:2px;
 			border: 0px;
-			background-color:#34495e;
-			color:white;
+			color:#000;
 		}
 		.ab{
 			margin-top: 35px;
@@ -104,9 +104,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    			<div>
    				<p>
    					<label>书名：</label>
-   					<input type="text" name="bookname" required>
+   					<input type="text" id="bookname" name="bookname" required>
    					<label>类型：</label>
-   					<select name="type" required>
+   					<select name="type" id="type" required>
    						<option value="计算机类">计算机类</option>
    						<option value="人文类">人文类</option>
    						<option value="自然科学类">自然科学类</option>
@@ -116,18 +116,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    				</p>
    				<p>
    					<label>作者：</label>
-   					<input type="text" name="author" required>
+   					<input type="text" id="author" name="author" required>
    					<label required>提供者：</label>
-   					<input type="text" name="provider" required>
+   					<input type="text" id="provider" name="provider"  value="${name}" required>
    					
    				</p>
    				<p>
    					<label>当前状态：</label>
-   					<select name="currentstate">
+   					<select id="currentstate" name="currentstate">
    						<option value="0" selected>空闲</option>
    					</select>
    					<label>发布时间：</label>
-   					<input type="date" id="sharetime" name="sharetime" required />
+   					<input type="date" id="sharetime" name="sharetime"required />
    				</p>
    				<p>
    					<label class="ab">简介：</label>
@@ -135,13 +135,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    				</p>
    				<p class="readonly">
    					<label>被借次数：</label>
-   					<input type="text" name="borrowtimes" value="0" />
-   					<label>被推荐次数:</label>
+   					<input type="text" name="borrowtimes" value="0" readonly="true"/>
+   					<label>被推荐次数：</label>
    					<input type="text" name="recommend" value="0" readonly="true">
    				</p>
    				
    				<p>
-   					<button class="yes" id="addbook" onclick="return false;">确定</button>
+   					<button class="yes" id="addbook" type="submit" onclick="return false;">确定</button>
    					<button class="no">取消</button>
    				</p>
    			</div>
@@ -149,27 +149,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		<script src="resources/js/jquery-1.11.1.js"></script>
     	<script src="resources/layer/layer.min.js"></script>
    		<script type="text/javascript">
+   			function validate(){
+   				if($("#bookname").val()!="" && $("#type").val()!="" 
+   						&& $("#author").val()!=""  && $("#provider").val()!=""
+   						  && $("#currentstate").val()!=""  && $("#sharetime").val()!=""){
+   					return true;
+   				}
+   				alert("请将表单填写完整");
+   				return false;
+   				
+   			}
    			$("#addbook").on("click",function(){
-   				console.log($("form"));
-   				$.ajax({
-   					type:'POST',
-   					url:'sharebook',
-   					data:$("form").serialize()/*将表单序列化之后才能在后台接收*/
-   				})
-   				.done(function(statu){
-   					if(statu == "success"){
-   						layer.msg('发布成功',2,{
-   							type:10,
-   							rate:300
-   						});
-   						$("form")[0].reset();
-   					}else{
-   						layer.alert('发布失败', 8);
-   					}
-   				})
-   				.error(function(){
-   					layer.alert('数据库内部错误', 8);
-   				})
+   				if(validate()){
+   					$.ajax({
+   	   					type:'POST',
+   	   					url:'sharebook',
+   	   					data:$("form").serialize()/*将表单序列化之后才能在后台接收*/
+   	   				})
+   	   				.done(function(statu){
+   	   					if(statu == "success"){
+   	   						layer.msg('发布成功',2,{
+   	   							type:10,
+   	   							rate:300
+   	   						});
+   	   						$("form")[0].reset();
+   	   					}else{
+   	   						layer.alert('发布失败', 8);
+   	   					}
+   	   				})
+   	   				.error(function(){
+   	   					layer.alert('数据库内部错误', 8);
+   	   				});
+   				}
    			});
    			$(".no").on("click",function(){
    				var index = parent.layer.getFrameIndex(window.name);
