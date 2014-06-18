@@ -45,7 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		<a href="#" class="page" onclick="alert('已经是第一页了');return false;">上一页</a>
     		<a href="#" class="page" onclick="alert('没有下一页了');return false;">下一页</a>
     		
-    		<button id="close">关闭当前页面</button>
+    		<button id="close_">关闭当前页面</button>
     	</div>
     </div>
      <script src="resources/js/jquery-1.11.1.js"></script>
@@ -53,7 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
     <script src="resources/js/jquery.popmenu.js"></script>
     <script type="text/javascript">
-    	$("#close").on("click",function(){
+    	$("#close_").on("click",function(){
     		var index = parent.layer.getFrameIndex(window.name);
     		parent.layer.close(index);
     	});
